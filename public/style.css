@@ -1,187 +1,155 @@
-@font-face {
-    font-family: "JetBrains Sans";
-    src: url("fonts/JetBrainsSans-Regular.woff2");
-}
 
-@font-face {
-    font-family: "JetBrains Mono";
-    src: url("fonts/JetBrainsMono-Regular.woff2");
+/* Адаптив: прячем центральное меню на узких экранах */
+@media (max-width: 1024px){
+    .main-nav{ display: none; }
 }
 
 :root {
-    font-family: "JetBrains Sans", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #000000;
-    text-align: center;
+    --font: 'Poppins', sans-serif;
+    --shadow-md: 0 2px 4px 0 rgb(12 0 46 / 4%);
+    --shadow-lg: 0 10px 14px 0 rgb(12 0 46 / 6%);
+    --z-sticky: 7777;
+    --z-navbar: 8888;
+    --z-drawer: 9999;
+    --z-modal: 9999;
+}
+
+.next-dark-theme {
+    --background: 26, 32, 44;
+    --secondBackground: 45, 55, 72;
+    --text: 237, 237, 238;
+    --textSecondary: 255, 255, 255;
+    --primary: 22, 115, 255;
+    --secondary: 10, 18, 30;
+    --tertiary: 231, 241, 251;
+    --cardBackground: 45, 55, 72;
+    --inputBackground: 45, 55, 72;
+    --navbarBackground: 45, 55, 72;
+    --modalBackground: 26, 32, 44;
+    --errorColor: 207, 34, 46;
+    --logoColor: #fff;
 }
 
 body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 320px;
     min-height: 100vh;
+    text-rendering: optimizespeed;
+    line-height: 1.5;
+    font-family: var(--font);
+    color: rgb(var(--text));
+    background: rgb(var(--navbarBackground));
+    font-feature-settings: "kern";
+}
+
+.brand {
+    display: inline-flex;
     align-items: center;
-
-    background-image: url("background.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
+    gap: 10px;
+    text-decoration: none;
+    height: 40px;
+    width: 133px;
 }
 
-h1 {
-    font-size: 29px;
-    line-height: 39px;
-    font-weight: 300;
+.brand-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
 }
 
-.title {
-    margin-bottom: 40px;
+.brand-name {
+    font-weight: 700;
+    font-size: 22px;
+    color: #fff;
 }
 
-#app {
-    max-width: 1280px;
-}
-
-.logo {
-    margin-top: 45px;
-    margin-left: 20%;
-    align-self: flex-start;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-.counter {
-    font-family: "JetBrains Mono", Inter, system-ui, sans-serif;
-    font-weight: 400;
+.site-header {
+    background: rgb(var(--navbarBackground, 45, 55, 72)); /* фон из переменной */
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    height: 80px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 60px;
-    color: rgba(255, 255, 255, 1);
+    align-items: center;
+    padding: 0 15px;
 }
 
-.counter-interaction {
+.container.header-row {
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px 0;
-    width: 470px;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-between; /* раздвигаем влево и вправо */
+    height: 50px;
+    width: 1260px;
 }
 
-.counter-interaction button {
-    width: 48%;
-    height: 47%;
-    align-content: space-between;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 120px;
-    font-size: 68px;
-    text-align: center;
+/* Лого и бренд слева */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
 }
 
-.counter-interaction button:nth-child(2n+1) {
-    margin-right: 14px;
+/* Центральное меню */
+.main-nav {
+    display: flex;
+    gap: 32px;
+    margin-left: 60px; /* чуть отодвинем от лого */
 }
 
-.counter-interaction button:disabled {
-    color: rgba(255, 255, 255, 0.5);
-    background-image: none;
-    border-color: inherit;
-}
-
-.counter-info {
-    width: 360px;
-    height: 345px;
-    margin-right: 27px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background-color: rgba(25, 25, 28, 0.5);
-    border-radius: 29px;
-}
-
-.counter-text {
+.main-nav a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.75);
+    font-weight: 700;
+    font-size: 14px;
     text-transform: uppercase;
-    font-weight: 500;
-    font-size: 24px;
-    margin-top: 60px;
-    margin-bottom: 28px;
-
+    transition: color .2s ease;
+}
+.main-nav a:hover {
+    color: #fff;
 }
 
-.counter-value {
-    font-weight: 200;
-    font-size: 170px;
-    margin: 0;
-    padding: 0;
-    line-height: 1;
+/* Правая часть (кнопки и тумблер темы) */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-button {
-    font-family: "JetBrains Mono", Inter, system-ui, sans-serif;
-    background-color: rgba(25, 25, 28, 0.5);
+.signUp-button {
+    background-color: #1E66FF;   /* ярко-синий */
+    color: #fff;                 /* белый текст */
+    font-weight: 700;            /* жирный шрифт */
+    font-size: 14px;
+    text-transform: uppercase;   /* ВСЕ БУКВЫ ЗАГЛАВНЫЕ */
+
+    padding: 10px 22px;          /* внутренние отступы */
+    border: none;                /* без обводки */
+    border-radius: 8px;          /* скруглённые углы */
+
+    cursor: pointer;             /* "рука" при наведении */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* лёгкая тень */
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.signUp-button:hover {
+    transform: scale(1.05);      /* Увеличиваем кнопку */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* усиливаем тень */
+}
+
+.signUp-button:active {
+    transform: translateY(1px);  /* эффект нажатия */
+}
+
+.theme-toggle {
+    width: 38px;
+    height: 38px;
+    display: inline-grid;
+    place-items: center;
+
+    background: transparent;   /* ← прозрачный фон */
+    border: 1px solid rgba(255,255,255,.15); /* рамка */
+    color: #fff;               /* белый цвет для svg, если fill="currentColor" */
+    border-radius: 10px;
     cursor: pointer;
-    color: rgba(255, 255, 255, 1);
-}
-
-button:hover {
-    background-image: radial-gradient(
-            farthest-corner at 77% 83%,
-            rgba(1, 197, 245, 0.5) 2%,
-            rgba(1, 126, 254, 0.5) 28%,
-            rgba(25, 25, 28, 0) 70%
-    );
-    border: 1px solid rgba(76, 166, 255, 0.2);
-    background-clip: padding-box;
-}
-
-.technologies {
-    margin-bottom: 36px;
-    align-self: center;
-}
-
-.technologies img {
-    max-width: fit-content;
-}
-
-
-@media (max-width: 875px) {
-
-    .logo {
-        margin-top: 10px;
-    }
-
-    .title {
-        margin-bottom: 30px;
-    }
-
-    .counter {
-        flex-direction: column;
-        padding: 0;
-        margin-bottom: 0;
-    }
-
-    .counter-info {
-        width: 100%;
-        height: 300px;
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-
-    .counter-interaction {
-        display: flex;
-        flex-direction: row;
-        height: auto;
-        width: auto;
-    }
-
-    .counter-interaction button {
-        width: 47%;
-        height: 100px;
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
 }
