@@ -14,6 +14,12 @@
     --z-modal: 9999;
 }
 
+.hero-image {
+    width: 100%;      /* займёт всю ширину контейнера */
+    height: auto;     /* сохранит пропорции */
+    max-width: 600px; /* можно ограничить максимальный размер */
+}
+
 .next-dark-theme {
     --background: 26, 32, 44;
     --secondBackground: 45, 55, 72;
@@ -36,8 +42,12 @@ body {
     line-height: 1.5;
     font-family: var(--font);
     color: rgb(var(--text));
-    background: rgb(var(--navbarBackground));
+    background: rgb(var(--secondBackground));
     font-feature-settings: "kern";
+}
+
+.first-part-of-site-class{
+
 }
 
 .brand {
@@ -92,15 +102,16 @@ body {
 /* Центральное меню */
 .main-nav {
     display: flex;
-    gap: 32px;
-    margin-left: 60px; /* чуть отодвинем от лого */
+    gap: 60px;
+    margin-left: 500px;
+    margin-right: 30px;
 }
 
 .main-nav a {
     text-decoration: none;
     color: rgba(255,255,255,0.75);
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
     text-transform: uppercase;
     transition: color .2s ease;
 }
@@ -115,11 +126,18 @@ body {
     gap: 16px;
 }
 
+/* при очень узком экране (например, ширина <= 600px) */
+@media (max-width: 1200px) {
+    .main-nav {
+        display: none; /* спрятать ссылки */
+    }
+}
+
 .signUp-button {
     background-color: #1E66FF;   /* ярко-синий */
     color: #fff;                 /* белый текст */
-    font-weight: 700;            /* жирный шрифт */
-    font-size: 14px;
+    font-weight: bold;            /* жирный шрифт */
+    font-size: 12px;
     text-transform: uppercase;   /* ВСЕ БУКВЫ ЗАГЛАВНЫЕ */
 
     padding: 10px 22px;          /* внутренние отступы */
@@ -130,6 +148,9 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* лёгкая тень */
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.signUp-button span{
+    margin-left: 13px;
 }
 
 .signUp-button:hover {
@@ -153,3 +174,77 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
+
+.main-container-1 {
+    display: flex;
+    padding-top: 2rem;
+    position: relative;
+    max-width: 130em;
+    margin: 0px auto;
+    justify-content: space-between;
+    /*height: 50px;*/
+    width: 1260px;
+
+}
+
+.first-text-container{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 520px;
+}
+
+.main-container-2 {
+
+}
+
+.span-class{
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.span-class::before{
+    bottom: -0.1em;
+    content: "";
+    display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
+    background-color: rgb(var(--primary));
+    line-height: 0;
+    margin-right: 1em;
+}
+
+.make-your-life-class{
+    font-size: 4.4rem;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    letter-spacing: -0.03em;
+}
+
+.lorem-ipsum-class{
+    font-size: 1.1rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.subscribe-feat-class{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.transparent-btn {
+    background-color: transparent !important; /* фон убираем */
+    box-shadow: none; /* если нужно убрать тень */
+}
+
+.transparent-btn:hover {
+    transform: scale(1.05);      /* Увеличиваем кнопку */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+}
+
+
