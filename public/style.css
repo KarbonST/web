@@ -148,7 +148,7 @@ body {
     place-items: center;
 
     background: transparent;   /* ← прозрачный фон */
-    border: 1px solid rgba(255,255,255,.15); /* рамка */
+    border: none;
     color: #fff;               /* белый цвет для svg, если fill="currentColor" */
     border-radius: 10px;
     cursor: pointer;
