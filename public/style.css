@@ -5,16 +5,22 @@
 }
 
 :root {
-    --font: 'Poppins', sans-serif;
-    --shadow-md: 0 2px 4px 0 rgb(12 0 46 / 4%);
-    --shadow-lg: 0 10px 14px 0 rgb(12 0 46 / 6%);
-    --z-sticky: 7777;
-    --z-navbar: 8888;
-    --z-drawer: 9999;
-    --z-modal: 9999;
+    --background: rgb(251, 251, 253);
+    --secondBackground: rgb(255, 255, 255);
+    --text: rgb(10, 18, 30);
+    --textSecondary: rgb(255, 255, 255);
+    --primary: rgb(22, 115, 255);
+    --secondary: rgb(10, 18, 30);
+    --tertiary: rgb(231, 241, 251);
+    --cardBackground: rgb(255, 255, 255);
+    --inputBackground: rgb(255, 255, 255);
+    --navbarBackground: rgb(255, 255, 255);
+    --modalBackground: rgb(251, 251, 253);
+    --errorColor: rgb(207, 34, 46);
+    --logoColor: #000000;
 }
 
-.next-dark-theme {
+.dark-theme {
     --background: 26, 32, 44;
     --secondBackground: 45, 55, 72;
     --text: 237, 237, 238;
@@ -27,14 +33,19 @@
     --navbarBackground: 45, 55, 72;
     --modalBackground: 26, 32, 44;
     --errorColor: 207, 34, 46;
-    --logoColor: #fff;
+    --logoColor: #ffffff;
 }
+
+svg {
+    background: var(--secondBackground);
+}
+
 
 body {
     min-height: 100vh;
     text-rendering: optimizespeed;
     line-height: 1.5;
-    font-family: var(--font);
+    font-family: 'Poppins',sans-serif;
     color: rgb(var(--text));
     background: rgb(var(--navbarBackground));
     font-feature-settings: "kern";
