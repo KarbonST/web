@@ -8,6 +8,7 @@
     --background: rgb(251, 251, 253);
     --secondBackground: rgb(255, 255, 255);
     --text: rgb(10, 18, 30);
+    --textForMenu: rgb(10, 18, 30);
     --textSecondary: rgb(255, 255, 255);
     --primary: rgb(22, 115, 255);
     --secondary: rgb(10, 18, 30);
@@ -21,19 +22,26 @@
 }
 
 .dark-theme {
-    --background: 26, 32, 44;
-    --secondBackground: 45, 55, 72;
-    --text: 237, 237, 238;
-    --textSecondary: 255, 255, 255;
-    --primary: 22, 115, 255;
-    --secondary: 10, 18, 30;
-    --tertiary: 231, 241, 251;
-    --cardBackground: 45, 55, 72;
-    --inputBackground: 45, 55, 72;
-    --navbarBackground: 45, 55, 72;
-    --modalBackground: 26, 32, 44;
-    --errorColor: 207, 34, 46;
-    --logoColor: #ffffff;
+    --background: rgb(26, 32, 44);
+    --secondBackground: rgb(45, 55, 72);
+    --text: rgb(238, 237, 237);
+    --textForMenu: rgb(238, 237, 237, 0.75);
+    --textSecondary: rgb(255, 255, 255);
+    --primary: rgb(22, 115, 255);
+    --secondary: rgb(10, 18, 30);
+    --tertiary: rgb(231, 241, 251);
+    --cardBackground: rgb(45, 55, 72);
+    --inputBackground: rgb(45, 55, 72);
+    --navbarBackground: rgb(45, 55, 72);
+    --modalBackground: rgb(26, 32, 44);
+    --errorColor: rgb(207, 34, 46);
+    --logoColor: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 svg {
@@ -42,6 +50,7 @@ svg {
 
 html, body {
     font-size: 10px;
+    background: var(--background);
 }
 
 body {
@@ -58,209 +67,480 @@ body {
     padding: 0 2rem;
 }
 
-.first-part-of-site-class{
-
+.header
+{
+    padding: 1.8rem;
+    background-color: var(--navbarBackground);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    height: 40px;
-    width: 133px;
+#header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
-.brand-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-}
-
-.brand-name {
-    font-weight: 700;
-    font-size: 22px;
-    color: #fff;
-}
-
-.site-header {
-    background: rgb(var(--navbarBackground, 45, 55, 72)); /* фон из переменной */
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    height: 80px;
+.header-body {
     display: flex;
     align-items: center;
-    padding: 0 15px;
 }
 
-.container.header-row {
-    margin: 0 auto;
-    padding: 0 20px;
+.header-logo {
+    flex-grow: 1;
+    color: var(--logoColor);
+}
+
+.mobile-menu-btn {
+    color: var(--logoColor);
+}
+
+.menu
+{
+    list-style: none;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* раздвигаем влево и вправо */
-    height: 50px;
-    width: 1260px;
+    gap: 30px;
 }
 
-/* Лого и бренд слева */
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #fff;
-}
-
-/* Центральное меню */
-.main-nav {
-    display: flex;
-    gap: 60px;
-    margin-left: 500px;
-    margin-right: 30px;
-}
-
-.main-nav a {
-    text-decoration: none;
-    color: rgba(255,255,255,0.75);
-    font-weight: 700;
-    font-size: 12px;
+.menu-item
+{
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 0.025em;
+    color: var(--text);
     text-transform: uppercase;
-    transition: color .2s ease;
-}
-.main-nav a:hover {
-    color: #fff;
 }
 
-/* Правая часть (кнопки и тумблер темы) */
-.header-actions {
+.header-link a
+{
+    text-decoration: none;
+    color: var(--textForMenu);
+}
+
+.signBtn
+{
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    line-height: 1.8;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.signBtn:hover
+{
+    transform: scale(1.025);
+}
+
+.header-nav-mobile {
+    display: none;
+}
+
+.menu-mobile
+{
+    transition: 0.2s all ease;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background);
+    text-align: center;
+    flex-direction: column;
+}
+
+.menu-mobile.active {
+    right: 0;
+}
+
+.close-menu-btn {
+    font-size: 20px;
+    color: var(--logoColor);
+
+}
+
+.inner-header
+{
+    padding-top: 3rem;
+    background-color: var(--secondBackground);
+}
+.inner-header-body
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inner-header-content
+{
+    flex: 1 1 0%;
+}
+
+.inner-header-title
+{
+    font-size: 7.2rem;
+    line-height: 1.1;
+    color: var(--text);
+}
+
+.inner-header-text
+{
+    margin-top: 40px;
+    font-size: 1.8rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.inner-header-img
+{
+    flex: 1 1 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inner-header-img svg{
+    max-width: 450px;
+    width: 100%;
+}
+
+.title
+{
+    font-weight: 700;
+    letter-spacing: 0.03rem;
+    line-height: 1.1;
+    color: var(--text);
+}
+
+.feedback-link-container
+{
+    margin-top: 40px;
+    display: flex;
+    gap: 2rem;
+}
+
+.feedback-link
+{
+    display: block;
+    transition: all 0.2s ease;
+    position: relative;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    padding: 0.175rem 0.225rem;
+    text-decoration: none;
+    padding: 1.75rem 3.55rem;
+    border-radius: 0.3rem;
+}
+
+.feedback-link:after
+{
+    display: inline;
+    content: "→";
+    position: absolute;
+    height: 100%;
+    right: 1.3rem;
+    vertical-align: baseline;
+}
+
+.feedback-link:hover
+{
+    transform: scale(1.025);
+}
+
+
+.feedback-link-blue
+{
+    background-color:var(--primary);
+    color:#fff;
+}
+
+.feedback-link-white
+{
+    background-color: transparent;
+    color:var(--text);
+}
+
+.partners
+{
+    padding-top: 8rem;
+    background-color: var(--secondBackground);
+}
+
+.partners-body
+{
+    text-align: center;
+    width: 100%;
+
+}
+
+.partners-title
+{
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.03rem;
+    opacity: 0.8;
+    margin-bottom: 5rem;
+}
+
+.partners-slider
+{
+    position: relative;
+    overflow-x: hidden;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.section-mark
+{
+    font-weight: 700;
+    letter-spacing: 0.02rem;
+    font-size: 1.3rem;
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 2rem;
+    color: var(--text);
+}
+
+.section-mark::before
+{
+    display: block;
+    position: absolute;
+    content: "";
+    width: 0.9em;
+    height: 0.9em;
+    background-color: var(--primary);
+    top: 0.25rem;
+    left: 0;
+}
+
+.section
+{
+    padding:8rem 0;
+    background-color: var(--secondBackground);
+}
+
+.section-bg-dark
+{
+    background-color: var(--secondary);
+    color: var(--textSecondary)
+}
+
+
+.section-body
+{
+    display: flex;
+    gap:5rem;
+}
+
+.section-body-column
+{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    gap: 0;
+}
+
+.section-content
+{
+    flex: 1 1 0%;
+}
+
+.section-title
+{
+    font-size: 5.2rem;
+    color: var(--text);
+}
+
+.section-text
+{
+    margin-top: 4rem;
+    font-size: 1.8rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.section-image
+{
+    flex: 1 1 0%;
+}
+
+.section-image img
+{
+    width: 100%;
+}
+
+.section-list
+{
+    margin-top: 2rem;
+}
+
+.list
+{
+    list-style: none;
+}
+
+.list-item
+{
+    position: relative;
+    font-size: 1.8rem;
+    opacity: 0.8;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.list-item-check-mark
+{
+    padding-left: 2rem;
+}
+
+.list-item-check-mark::after
+{
+    position: absolute;
+    content: "L";
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    color: var(--primary);
+    font-family: arial;
+    transform: scaleX(-1) rotate(-35deg);
+}
+
+/* === Контейнеры секции === */
+.features {
+    margin-top: 15rem;
+    background-color: var(--background);
+    text-align: center;
+}
+.features__body {
+    margin-top: 3rem;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 5rem;
+}
+.features__title {
+    font-size: 5.2rem;
+    color: var(--text);
+}
+.features__content { flex: 1 1 30%; }
+.features__img { flex: 1 1 60%; }
+.features__img img { width: 100%; }
+
+/* === Карточка фичи === */
+.feature {
+    background-color: var(--cardBackground);
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 2px 4px 0 rgb(12 0 46 / 4%);
+    border-radius: 0.6rem;
 }
 
-/* при очень узком экране (например, ширина <= 600px) */
-@media (max-width: 1200px) {
-    .main-nav {
-        display: none; /* спрятать ссылки */
+/* Корпус фичи (тот, на котором ты ставишь .active в JS) */
+.feature-body {
+    position: relative;
+    padding-left: 5rem;
+    text-align: start;
+    cursor: pointer;
+
+    /* плавное выделение активного блока */
+    opacity: 0.6;
+    transform: scale(1);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.feature-body.active {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* Заголовок/текст */
+.feature-title { font-size: 1.6rem; }
+
+/* ВАЖНО: вместо display:none — анимируем max-height + opacity */
+.feature-text {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: var(--text);
+    line-height: 1.6;
+
+    overflow: hidden;
+    max-height: 0;       /* скрыто */
+    opacity: 0;          /* прозрачно */
+    transition: max-height 0.35s ease, opacity 0.35s ease;
+}
+.feature-body.active .feature-text {
+    max-height: 300px;   /* подбери под свой контент (или поставь 1000px) */
+    opacity: 1;
+}
+
+/* Акцентные кружки (твой декор) */
+.feature-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -0.5rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+.feature-body::after {
+    display: none;
+}
+.feature-body.active::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -0.5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    transform: translate(0.5rem, 0.5rem);
+    border-style: solid;
+    border-width: 0.5rem;
+}
+
+/* Цветовые модификаторы, синхронно с именами классов в HTML */
+.feature-body-blue-accent::before { background-color: blue; }
+.feature-body-blue-accent::after  { background-color: blue; border-color: rgb(141,141,255); }
+
+.feature-body-red-accent::before  { width: 2rem; height: 2rem; background-color: rgb(249,82,120); }
+.feature-body-red-accent::after   { width: 4rem; height: 4rem; background-color: rgb(221,9,57); z-index: -2; }
+
+.feature-body-green-accent::before { background-color: green; }
+.feature-body-green-accent::after  { background-color: green; border-color: rgb(164,255,141); }
+
+
+@media (max-width: 1000px) {
+    .html {
+        font-size: 8px;
+    }
+
+    .header-nav{
+        display: none;
+    }
+
+    .header-nav-mobile {
+        display: block;
+    }
+
+    .inner-header-body
+    {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
-.signUp-button {
-    background-color: #1E66FF;   /* ярко-синий */
-    color: #fff;                 /* белый текст */
-    font-weight: bold;            /* жирный шрифт */
-    font-size: 12px;
-    text-transform: uppercase;   /* ВСЕ БУКВЫ ЗАГЛАВНЫЕ */
-
-    padding: 10px 22px;          /* внутренние отступы */
-    border: none;                /* без обводки */
-    border-radius: 8px;          /* скруглённые углы */
-
-    cursor: pointer;             /* "рука" при наведении */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* лёгкая тень */
-
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.signUp-button span{
-    margin-left: 13px;
-}
-
-.signUp-button:hover {
-    transform: scale(1.05);      /* Увеличиваем кнопку */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* усиливаем тень */
-}
-
-.signUp-button:active {
-    transform: translateY(1px);  /* эффект нажатия */
-}
-
-.theme-toggle {
-    width: 38px;
-    height: 38px;
-    display: inline-grid;
-    place-items: center;
-
-    background: transparent;   /* ← прозрачный фон */
-    border: none;
-    color: #fff;               /* белый цвет для svg, если fill="currentColor" */
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.main-container-1 {
-    display: flex;
-    padding-top: 2rem;
-    position: relative;
-    max-width: 130em;
-    margin: 0px auto;
-    justify-content: space-between;
-    /*height: 50px;*/
-    width: 1260px;
-
-}
-
-.first-text-container{
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    height: 520px;
-}
-
-.main-container-2 {
-
-}
-
-.span-class{
-    font-weight: bold;
-    font-size: 13px;
-    text-transform: uppercase;
-}
-
-.span-class::before{
-    bottom: -0.1em;
-    content: "";
-    display: inline-block;
-    width: 0.9em;
-    height: 0.9em;
-    background-color: rgb(var(--primary));
-    line-height: 0;
-    margin-right: 1em;
-}
-
-.make-your-life-class{
-    font-size: 4.4rem;
-    font-weight: bold;
-    line-height: 1.1;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    letter-spacing: -0.03em;
-}
-
-.lorem-ipsum-class{
-    font-size: 1.1rem;
-    opacity: 0.8;
-    line-height: 1.6;
-}
-
-.subscribe-feat-class{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 10px;
-}
-
-.transparent-btn {
-    background-color: transparent !important; /* фон убираем */
-    box-shadow: none; /* если нужно убрать тень */
-}
-
-.transparent-btn:hover {
-    transform: scale(1.05);      /* Увеличиваем кнопку */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
-}
-
-.hero-image {
-    width: 100%;      /* займёт всю ширину контейнера */
-    height: auto;     /* сохранит пропорции */
-    max-width: 600px; /* можно ограничить максимальный размер */
-}
