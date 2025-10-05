@@ -40,15 +40,22 @@ svg {
     background: var(--secondBackground);
 }
 
+html, body {
+    font-size: 10px;
+}
 
 body {
-    min-height: 100vh;
-    text-rendering: optimizespeed;
-    line-height: 1.5;
     font-family: 'Poppins',sans-serif;
-    color: rgb(var(--text));
-    background: rgb(var(--navbarBackground));
-    font-feature-settings: "kern";
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .first-part-of-site-class{
