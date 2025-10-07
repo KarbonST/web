@@ -42,6 +42,10 @@ svg {
     background: var(--secondBackground);
 }
 
+.footer-links svg {
+    background: var(--secondary);
+}
+
 html, body {
     font-size: 10px;
     background: var(--background);
@@ -210,6 +214,13 @@ body {
     color: var(--text);
 }
 
+
+.features-title {
+    font-size: 5.2rem;
+    color: var(--text);
+}
+
+
 .feedback-link-container
 {
     margin-top: 40px;
@@ -324,6 +335,10 @@ body {
     background-color: var(--secondBackground);
 }
 
+.section-bg-dark-text{
+    color: #ffffff;
+}
+
 .section-bg-dark
 {
     background-color: var(--secondary);
@@ -383,6 +398,13 @@ body {
     margin-top: 2rem;
 }
 
+.section-bg-dark .section-title,
+.section-bg-dark .section-text,
+.section-bg-dark .section-mark,
+.section-bg-dark .feedback-link-white {
+    color: #fff;
+}
+
 .list
 {
     list-style: none;
@@ -391,7 +413,7 @@ body {
 .list-item
 {
     position: relative;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     opacity: 0.8;
     line-height: 1.6;
     color: var(--text);
@@ -517,6 +539,55 @@ body {
 .feature-body-green-accent::before { background-color: green; }
 .feature-body-green-accent::after  { background-color: green; border-color: rgb(164,255,141); }
 
+.footer {
+    padding-bottom: 4rem;
+    background-color: var(--secondary);
+}
+
+.footer-row
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6rem;
+}
+
+.footer-list {
+    margin-top: 4rem;
+}
+
+.footer-row-align-center
+{
+    align-items: center;
+}
+
+.list-item
+{
+    margin-bottom: 1rem;
+}
+
+.list-item a
+{
+    text-decoration: none;
+    color: var(--textSecondary);
+}
+
+.footer-links
+{
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-copyright
+{
+    font-size: 1.4rem;
+    color: white;
+}
+
+.footer-list .title {
+    font-size: 2.25rem;
+    color: white;
+    margin-bottom: 3.5rem;
+}
 
 @media (max-width: 1000px) {
     .html {
@@ -535,6 +606,25 @@ body {
     {
         flex-direction: column;
         align-items: center;
+    }
+
+    .section-body
+    {
+        flex-direction: column;
+    }
+
+    .features-body
+    {
+        flex-direction: column;
+    }
+
+    .footer-row
+    {
+        flex-wrap: wrap;
+    }
+    .footer-list
+    {
+        flex-basis: 50%;
     }
 }
 
