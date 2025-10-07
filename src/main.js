@@ -89,3 +89,117 @@ function switchBlock(e)
     featureImg.children[0].setAttribute("src",featureImages[e.currentTarget.dataset.img])
 }
 
+/* === INFINITE SLIDER (по стрелкам) c фиксом «проскакивания» ======================== */
+(() => {
+    const slider = document.querySelector(".slider");
+    const track  = document.querySelector(".slides");
+    const prev   = document.getElementById("prev");
+    const next   = document.getElementById("next");
+
+    if (!slider || !track || !prev || !next) return;
+
+    // Клонируем крайние слайды для бесконечной прокрутки
+    let originalSlides = Array.from(track.children);
+    if (originalSlides.length < 2) return;
+
+    const firstClone = originalSlides[0].cloneNode(true);
+    const lastClone  = originalSlides[originalSlides.length - 1].cloneNode(true);
+    firstClone.dataset.clone = "first";
+    lastClone.dataset.clone  = "last";
+
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, originalSlides[0]);
+
+    let slides = Array.from(track.children);
+
+    // Текущее положение (c учётом левого клона)
+    let index = 1;
+    let animating = false;
+    let teleporting = false;
+
+    const forceReflow = (el) => { void el.offsetHeight; }; // принудительный reflow, чтобы зафиксировать состояние без transition
+    const slideWidth = () => slider.getBoundingClientRect().width;
+
+    const setTranslate = () => {
+        const x = Math.round(index * slideWidth()); // округляем для исключения субпикселей
+        track.style.transform = `translate3d(-${x}px, 0, 0)`;
+    };
+
+    const init = () => {
+        track.classList.add("no-transition");
+        setTranslate();
+        forceReflow(track);
+        requestAnimationFrame(() => track.classList.remove("no-transition"));
+    };
+
+    const goTo = (nextIndex) => {
+        if (animating || teleporting) return;
+        animating = true;
+        index = nextIndex;
+        track.classList.remove("no-transition");
+        setTranslate();
+    };
+
+    next.addEventListener("click", () => goTo(index + 1));
+    prev.addEventListener("click", () => goTo(index - 1));
+
+    // По окончании анимации проверяем клоны и «телепортируемся» без анимации
+    track.addEventListener("transitionend", (e) => {
+        if (e.target !== track || e.propertyName !== "transform") return;
+
+        animating = false;
+
+        const current = slides[index];
+        if (!current) return;
+
+        if (current.dataset.clone === "first") {
+            teleporting = true;
+            track.classList.add("no-transition");
+            index = 1; // реальный первый
+            setTranslate();
+            forceReflow(track);
+            requestAnimationFrame(() => {
+                track.classList.remove("no-transition");
+                teleporting = false;
+            });
+        } else if (current.dataset.clone === "last") {
+            teleporting = true;
+            track.classList.add("no-transition");
+            index = slides.length - 2; // реальный последний
+            setTranslate();
+            forceReflow(track);
+            requestAnimationFrame(() => {
+                track.classList.remove("no-transition");
+                teleporting = false;
+            });
+        }
+    });
+
+    // Пересчёт позиции при ресайзе
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            track.classList.add("no-transition");
+            setTranslate();
+            forceReflow(track);
+            requestAnimationFrame(() => track.classList.remove("no-transition"));
+        }, 100);
+    });
+
+    // Управление стрелками с клавиатуры
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next.click();
+        if (e.key === "ArrowLeft")  prev.click();
+    });
+
+    // Запрет перетаскивания картинок мышью
+    track.querySelectorAll("img").forEach(img => (img.draggable = false));
+
+    // Старт
+    init();
+})();
+
+
+
+
