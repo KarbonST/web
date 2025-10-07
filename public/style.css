@@ -416,7 +416,9 @@ body {
 .section-bg-dark .section-title,
 .section-bg-dark .section-text,
 .section-bg-dark .section-mark,
-.section-bg-dark .feedback-link-white {
+.section-bg-dark .feedback-link-white,
+.feedback .feedback-title,
+.feedback .feedback-link-white{
     color: #fff;
 }
 
