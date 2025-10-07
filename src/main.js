@@ -201,5 +201,52 @@ function switchBlock(e)
 })();
 
 
+/* === Hide-on-scroll Header =============================== */
+(() => {
+    const header = document.getElementById('header');
+    if (!header) return;
+
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+    const DELTA = 10; // порог, чтобы не дёргалось на мелких скроллах
+
+    const show = () => header.classList.remove('is-hidden');
+    const hide = () => header.classList.add('is-hidden');
+
+    const onScroll = () => {
+        const y = window.scrollY || document.documentElement.scrollTop;
+
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const diff = y - lastY;
+
+                if (y <= 0) {
+                    // в самом верху — всегда показываем
+                    show();
+                } else if (Math.abs(diff) > DELTA) {
+                    if (diff > 0) hide();     // скролл вниз → прячем
+                    else           show();     // скролл вверх → показываем
+                }
+
+                lastY = y;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Если открыт мобильный бургер — держим хедер видимым
+    const menu = document.querySelector('.menu-mobile');
+    if (menu) {
+        const mo = new MutationObserver(() => {
+            if (menu.classList.contains('active')) show();
+        });
+        mo.observe(menu, { attributes: true, attributeFilter: ['class'] });
+    }
+})();
+
+
 
 

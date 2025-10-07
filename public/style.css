@@ -87,6 +87,12 @@ body {
     top: 0;
     left: 0;
     z-index: 10;
+    transition: transform .3s ease;
+    will-change: transform;
+}
+
+#header.is-hidden{
+    transform: translateY(-100%);
 }
 
 .header-body {
