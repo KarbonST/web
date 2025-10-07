@@ -42,6 +42,16 @@ svg {
     background: var(--secondBackground);
 }
 
+.wave
+{
+    display:block;
+    width:100%;
+    height:auto;
+    line-height:0;
+    margin-bottom:-1px;
+    background: var(--background);
+}
+
 .footer-links svg {
     background: var(--secondary);
 }
@@ -715,6 +725,27 @@ body {
     right:10%;
 }
 
+.feedback
+{
+    padding-bottom: 26rem;
+    text-align: center;
+    background-color: var(--secondary);
+    color: var(--textSecondary);
+    margin-top:0;
+}
+
+.feedback-body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.feedback-title
+{
+    font-size:5.2rem;
+}
 
 .footer {
     padding-bottom: 4rem;
@@ -725,8 +756,8 @@ body {
 {
     display: flex;
     justify-content: space-between;
-    margin-top: 6rem;
 }
+
 
 .footer-list {
     margin-top: 4rem;
