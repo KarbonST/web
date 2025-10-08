@@ -48,8 +48,6 @@ function toggleTheme(toggle, icon) {
     });
 }
 
-
-// Находим нужные элементы
 const burgerBtn = document.querySelector(".mobile-menu-btn"); // кнопка-гамбургер
 const closeBtn = document.getElementById("closeMenu");    // кнопка "X"
 const menu = document.querySelector(".menu-mobile");      // само мобильное меню
@@ -89,7 +87,7 @@ function switchBlock(e)
     featureImg.children[0].setAttribute("src",featureImages[e.currentTarget.dataset.img])
 }
 
-/* === INFINITE SLIDER (по стрелкам) c фиксом «проскакивания» ======================== */
+// Бесконечный слайдер
 (() => {
     const slider = document.querySelector(".slider");
     const track  = document.querySelector(".slides");
@@ -98,7 +96,6 @@ function switchBlock(e)
 
     if (!slider || !track || !prev || !next) return;
 
-    // Клонируем крайние слайды для бесконечной прокрутки
     let originalSlides = Array.from(track.children);
     if (originalSlides.length < 2) return;
 
@@ -112,16 +109,15 @@ function switchBlock(e)
 
     let slides = Array.from(track.children);
 
-    // Текущее положение (c учётом левого клона)
     let index = 1;
     let animating = false;
     let teleporting = false;
 
-    const forceReflow = (el) => { void el.offsetHeight; }; // принудительный reflow, чтобы зафиксировать состояние без transition
+    const forceReflow = (el) => { void el.offsetHeight; };
     const slideWidth = () => slider.getBoundingClientRect().width;
 
     const setTranslate = () => {
-        const x = Math.round(index * slideWidth()); // округляем для исключения субпикселей
+        const x = Math.round(index * slideWidth());
         track.style.transform = `translate3d(-${x}px, 0, 0)`;
     };
 
@@ -143,7 +139,6 @@ function switchBlock(e)
     next.addEventListener("click", () => goTo(index + 1));
     prev.addEventListener("click", () => goTo(index - 1));
 
-    // По окончании анимации проверяем клоны и «телепортируемся» без анимации
     track.addEventListener("transitionend", (e) => {
         if (e.target !== track || e.propertyName !== "transform") return;
 
@@ -155,7 +150,7 @@ function switchBlock(e)
         if (current.dataset.clone === "first") {
             teleporting = true;
             track.classList.add("no-transition");
-            index = 1; // реальный первый
+            index = 1;
             setTranslate();
             forceReflow(track);
             requestAnimationFrame(() => {
@@ -165,7 +160,7 @@ function switchBlock(e)
         } else if (current.dataset.clone === "last") {
             teleporting = true;
             track.classList.add("no-transition");
-            index = slides.length - 2; // реальный последний
+            index = slides.length - 2;
             setTranslate();
             forceReflow(track);
             requestAnimationFrame(() => {
@@ -175,7 +170,6 @@ function switchBlock(e)
         }
     });
 
-    // Пересчёт позиции при ресайзе
     let resizeTimer;
     window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);
@@ -187,21 +181,18 @@ function switchBlock(e)
         }, 100);
     });
 
-    // Управление стрелками с клавиатуры
     window.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight") next.click();
         if (e.key === "ArrowLeft")  prev.click();
     });
 
-    // Запрет перетаскивания картинок мышью
     track.querySelectorAll("img").forEach(img => (img.draggable = false));
 
-    // Старт
     init();
 })();
 
 
-/* === Hide-on-scroll Header =============================== */
+// Реактивный на скролл хедер
 (() => {
     const header = document.getElementById('header');
     if (!header) return;

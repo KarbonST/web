@@ -106,6 +106,7 @@ body {
 }
 
 .mobile-menu-btn {
+    cursor: pointer;
     color: var(--logoColor);
 }
 
@@ -175,7 +176,7 @@ body {
 .close-menu-btn {
     font-size: 20px;
     color: var(--logoColor);
-
+    cursor: pointer;
 }
 
 .inner-header
